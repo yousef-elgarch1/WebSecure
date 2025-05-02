@@ -1,10 +1,21 @@
 # WebSecure
 
-![WebSecure Logo](assets/img/logo.svg)
+![WebSecure Logo](frontend/assets/img/logo.svg)
 
 ## Présentation
 
 WebSecure est une plateforme avancée d'analyse de vulnérabilités web qui combine l'intelligence artificielle et l'apprentissage automatique pour détecter les failles de sécurité dans les sites web. Cette application permet d'identifier les risques potentiels, d'évaluer le niveau de sécurité global et de fournir des recommandations personnalisées pour améliorer la protection de votre présence en ligne.
+
+## Approche Data-Driven
+
+Ce projet s'inscrit dans une démarche d'analyse basée sur les données (Data-Driven) pour la cybersécurité:
+
+- **Collecte de données réelles**: Nous avons réalisé un web scraping des rapports de la DGSS (Direction Générale de la Sécurité des Systèmes d'Information) concernant les vulnérabilités web pour constituer un jeu de données authentique.
+- **Prétraitement et enrichissement**: Les données brutes ont été nettoyées, structurées et enrichies pour créer un dataset CSV exploitable par nos modèles d'IA.
+- **Entraînement de modèles prédictifs**: Des algorithmes d'apprentissage automatique, notamment XGBoost, ont été entraînés sur ces données réelles pour prédire avec précision la présence et la sévérité des vulnérabilités.
+- **Validation et amélioration continue**: Les performances des modèles sont constamment évaluées et améliorées pour garantir des prédictions fiables.
+
+Cette approche nous permet d'offrir des analyses de sécurité basées sur des menaces et vulnérabilités observées dans le monde réel, et non sur des règles statiques ou des hypothèses théoriques.
 
 ## Fonctionnalités
 
@@ -18,9 +29,9 @@ WebSecure est une plateforme avancée d'analyse de vulnérabilités web qui comb
 
 ## Captures d'écran
 
-![Dashboard](screenshots/dashboard.png)
-![Rapport d'analyse](screenshots/report.png)
-![Détection de vulnérabilités](screenshots/vulnerabilities.png)
+![Dashboard](frontend/assets/img/analyse.png)
+![Rapport d'analyse](frontend/assets/img/Dashboard.png)
+![Détection de vulnérabilités](frontend/assets/img/Home.png)
 
 ## Architecture technique
 
@@ -34,7 +45,7 @@ WebSecure est construit avec une architecture moderne et évolutive :
 
 ### Backend
 - Python avec Flask
-- Algorithmes d'apprentissage automatique (Random Forest, XGBoost)
+- Algorithmes d'apprentissage automatique (XGBoost, Random Forest)
 - Analyse de sécurité web avancée
 - API RESTful
 
@@ -43,6 +54,16 @@ WebSecure est construit avec une architecture moderne et évolutive :
 - Classification des vulnérabilités
 - Prédiction des risques futurs
 - Extraction intelligente d'informations de site web
+
+## Pipeline de données et d'apprentissage automatique
+
+1. **Collecte de données**: Web scraping des rapports de sécurité de la DGSS
+2. **Prétraitement**: Nettoyage et structuration des données brutes
+3. **Feature Engineering**: Extraction de caractéristiques pertinentes pour l'analyse de sécurité
+4. **Entraînement**: Utilisation d'algorithmes XGBoost optimisés pour la détection de vulnérabilités
+5. **Validation**: Évaluation des performances sur des datasets de test
+6. **Déploiement**: Intégration des modèles entraînés dans l'application web
+7. **Inférence**: Utilisation des modèles pour analyser de nouveaux sites en temps réel
 
 ## Installation
 
@@ -93,6 +114,42 @@ WebSecure peut également être exécuté en utilisant Google Colab pour le back
 5. Explorez les vulnérabilités détectées et les recommandations
 6. Exportez le rapport en format HTML ou JSON si nécessaire
 
+## Structure du projet
+
+```
+WebSecure/
+├── backend/               # Code du serveur Flask
+│   ├── app.py             # Point d'entrée de l'application
+│   ├── config.py          # Configuration
+│   ├── feature_extractor.py  # Extraction de caractéristiques
+│   ├── models/            # Modèles ML entraînés
+│   ├── reports/           # Rapports générés
+│   ├── risk_predictor.py  # Prédiction des risques
+│   ├── security_analyzer.py  # Analyse de sécurité
+│   ├── utils/             # Utilitaires
+│   └── website_info_extractor.py  # Extraction d'infos de sites
+│
+├── frontend/              # Interface utilisateur
+│   ├── assets/
+│   │   ├── css/           # Feuilles de style
+│   │   ├── img/           # Images et illustrations
+│   │   └── js/            # Scripts JavaScript
+│   ├── index.html         # Page d'accueil
+│   ├── dashboard.html     # Tableau de bord
+│   ├── reports.html       # Rapports d'analyse
+│   └── about.html         # À propos
+│
+├── data/                  # Données pour l'entraînement des modèles
+│   ├── raw/               # Données brutes (rapports DGSS)
+│   ├── processed/         # Données traitées
+│   └── features/          # Caractéristiques extraites
+│
+└── notebooks/             # Notebooks Jupyter pour l'analyse de données et l'entraînement des modèles
+    ├── data_scraping.ipynb   # Web scraping des rapports DGSS
+    ├── data_processing.ipynb # Traitement des données
+    └── model_training.ipynb  # Entraînement des modèles XGBoost
+```
+
 ## Contributeurs
 
 Ce projet a été développé par :
@@ -111,4 +168,4 @@ Pour toute question ou suggestion, n'hésitez pas à nous contacter :
 
 ## Remerciements
 
-Nous tenons à remercier tous ceux qui ont contribué à ce projet, ainsi que les bibliothèques open source qui ont rendu ce projet possible.
+Nous tenons à remercier tous ceux qui ont contribué à ce projet, ainsi que les bibliothèques open source qui ont rendu ce projet possible. Nous remercions également la DGSS pour leurs rapports de sécurité qui ont servi de base à notre jeu de données d'entraînement.
