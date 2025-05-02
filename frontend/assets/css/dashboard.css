@@ -1,0 +1,199 @@
+/* Dashboard specific styles for WebSecure */
+
+/* Dashboard section padding */
+.dashboard-section {
+    padding-top: calc(var(--navbar-height) + 2rem);
+    min-height: calc(100vh - var(--navbar-height));
+}
+
+/* Dashboard metrics cards */
+.dashboard-metric {
+    padding: 2rem;
+    border-radius: var(--border-radius);
+    position: relative;
+    overflow: hidden;
+    transition: var(--transition);
+}
+
+.dashboard-metric:hover {
+    transform: translateY(-5px);
+}
+
+.metric-value {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+}
+
+.metric-label {
+    font-size: 1rem;
+    opacity: 0.9;
+    margin: 0;
+}
+
+.metric-icon {
+    position: absolute;
+    top: 1.5rem;
+    right: 1.5rem;
+    font-size: 2rem;
+    opacity: 0.3;
+}
+
+/* Dashboard card */
+.dashboard-card {
+    height: 100%;
+    box-shadow: var(--shadow);
+    transition: var(--transition);
+    border: none;
+    border-radius: var(--border-radius);
+    overflow: hidden;
+}
+
+.dashboard-card:hover {
+    box-shadow: var(--shadow-lg);
+}
+
+.dashboard-card .card-body {
+    padding: 1.5rem;
+}
+
+.dashboard-card .card-title {
+    margin-bottom: 1.5rem;
+    font-weight: 600;
+    color: var(--dark-color);
+}
+
+/* Recent scans */
+.scan-card {
+    margin-bottom: 1rem;
+    padding: 1rem;
+    border-radius: var(--border-radius);
+    background-color: white;
+    border-left: 4px solid var(--primary-color);
+    box-shadow: var(--shadow-sm);
+    transition: var(--transition);
+}
+
+.scan-card:hover {
+    box-shadow: var(--shadow);
+    transform: translateX(5px);
+}
+
+.scan-card:last-child {
+    margin-bottom: 0;
+}
+
+.risk-level-critique {
+    border-left-color: var(--danger-color);
+}
+
+.risk-level-important {
+    border-left-color: var(--warning-color);
+}
+
+.risk-level-modéré {
+    border-left-color: var(--info-color);
+}
+
+.risk-level-faible {
+    border-left-color: var(--success-color);
+}
+
+.scan-date {
+    font-size: 0.8rem;
+    color: var(--secondary-color);
+}
+
+.scan-url {
+    font-weight: 600;
+    margin: 0.5rem 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.scan-metrics {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 0.75rem;
+}
+
+.risk-badge {
+    font-size: 0.75rem;
+    padding: 0.2rem 0.5rem;
+    border-radius: 1rem;
+}
+
+.risk-badge.critique {
+    background-color: rgba(239, 68, 68, 0.15);
+    color: var(--danger-color);
+}
+
+.risk-badge.important {
+    background-color: rgba(245, 158, 11, 0.15);
+    color: var(--warning-color);
+}
+
+.risk-badge.modéré {
+    background-color: rgba(59, 130, 246, 0.15);
+    color: var(--info-color);
+}
+
+.risk-badge.faible {
+    background-color: rgba(16, 185, 129, 0.15);
+    color: var(--success-color);
+}
+
+.risk-score {
+    font-weight: 600;
+}
+
+.scan-actions {
+    text-align: right;
+}
+
+/* Empty states */
+.empty-state {
+    padding: 3rem;
+    text-align: center;
+    border-radius: var(--border-radius);
+    background-color: rgba(238, 242, 255, 0.3);
+}
+
+.empty-state i {
+    font-size: 3rem;
+    color: var(--secondary-color);
+    opacity: 0.5;
+    margin-bottom: 1rem;
+}
+
+.empty-state h4 {
+    font-weight: 600;
+    margin-bottom: 1rem;
+}
+
+.empty-state p {
+    color: var(--secondary-color);
+    margin-bottom: 1.5rem;
+}
+
+/* Responsive adjustments */
+@media (max-width: 992px) {
+    .dashboard-metric {
+        margin-bottom: 1.5rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .scan-metrics {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.5rem;
+    }
+
+    .scan-actions {
+        text-align: left;
+        margin-top: 0.5rem;
+    }
+}

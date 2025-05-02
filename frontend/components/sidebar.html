@@ -1,0 +1,73 @@
+<div class="dashboard-sidebar">
+    <div class="sidebar-header">
+        <h5>Navigation</h5>
+    </div>
+    <ul class="sidebar-menu">
+        <li class="sidebar-item">
+            <a href="dashboard.html" class="sidebar-link" id="sidebar-dashboard">
+                <i class="fas fa-tachometer-alt"></i>
+                <span>Vue d'ensemble</span>
+            </a>
+        </li>
+        <li class="sidebar-item">
+            <a href="reports.html" class="sidebar-link" id="sidebar-reports">
+                <i class="fas fa-file-alt"></i>
+                <span>Rapports</span>
+            </a>
+        </li>
+        <li class="sidebar-item">
+            <a href="index.html#analyze" class="sidebar-link" id="sidebar-analyze">
+                <i class="fas fa-search"></i>
+                <span>Nouvelle analyse</span>
+            </a>
+        </li>
+        <li class="sidebar-item">
+            <a href="#" class="sidebar-link" id="sidebar-settings">
+                <i class="fas fa-cog"></i>
+                <span>Paramètres</span>
+            </a>
+        </li>
+        <li class="sidebar-item">
+            <a href="about.html" class="sidebar-link" id="sidebar-about">
+                <i class="fas fa-info-circle"></i>
+                <span>À propos</span>
+            </a>
+        </li>
+    </ul>
+
+    <div class="sidebar-footer">
+        <div class="sidebar-help">
+            <a href="#" id="help-toggle">
+                <i class="fas fa-question-circle"></i>
+                <span>Aide</span>
+            </a>
+        </div>
+    </div>
+</div>
+
+<script>
+    // Highlight current page in sidebar
+    document.addEventListener('DOMContentLoaded', function () {
+        const currentPage = window.location.pathname.split('/').pop();
+
+        // Remove active class from all sidebar links
+        document.querySelectorAll('.sidebar-link').forEach(link => {
+            link.classList.remove('active');
+        });
+
+        // Add active class to current page link
+        if (currentPage === 'dashboard.html') {
+            document.getElementById('sidebar-dashboard').classList.add('active');
+        } else if (currentPage === 'reports.html') {
+            document.getElementById('sidebar-reports').classList.add('active');
+        } else if (currentPage.includes('about.html')) {
+            document.getElementById('sidebar-about').classList.add('active');
+        }
+
+        // Help toggle
+        document.getElementById('help-toggle').addEventListener('click', function (e) {
+            e.preventDefault();
+            document.getElementById('chatbot-toggle').click();
+        });
+    });
+</script>

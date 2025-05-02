@@ -1,0 +1,215 @@
+/* Reports specific styles for WebSecure */
+
+/* Reports section padding */
+.reports-section {
+    padding-top: calc(var(--navbar-height) + 2rem);
+    min-height: calc(100vh - var(--navbar-height));
+}
+
+/* Reports table */
+.reports-table {
+    box-shadow: var(--shadow-sm);
+    border-radius: var(--border-radius);
+    overflow: hidden;
+}
+
+.reports-table thead {
+    background-color: rgba(59, 130, 246, 0.05);
+}
+
+.reports-table th {
+    font-weight: 600;
+    border-bottom-width: 1px;
+}
+
+.reports-table tbody tr {
+    transition: var(--transition);
+}
+
+.reports-table tbody tr:hover {
+    background-color: rgba(59, 130, 246, 0.05);
+}
+
+/* Report detail */
+.report-header {
+    margin-bottom: 2rem;
+}
+
+.report-url {
+    word-break: break-all;
+    font-family: monospace;
+    background-color: rgba(0, 0, 0, 0.05);
+    padding: 0.5rem;
+    border-radius: var(--border-radius);
+}
+
+.risk-indicator {
+    padding: 1.5rem;
+    border-radius: var(--border-radius);
+    margin-bottom: 1rem;
+}
+
+.risk-indicator.danger {
+    background-color: rgba(239, 68, 68, 0.1);
+}
+
+.risk-indicator.warning {
+    background-color: rgba(245, 158, 11, 0.1);
+}
+
+.risk-indicator.info {
+    background-color: rgba(59, 130, 246, 0.1);
+}
+
+.risk-indicator.success {
+    background-color: rgba(16, 185, 129, 0.1);
+}
+
+.risk-level {
+    display: block;
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-bottom: 0.75rem;
+}
+
+/* Progress bar styling */
+.risk-indicator .progress {
+    height: 10px;
+    border-radius: 1rem;
+    background-color: rgba(255, 255, 255, 0.6);
+}
+
+.risk-indicator .progress-bar {
+    border-radius: 1rem;
+}
+
+/* Vulnerability cards */
+.vuln-card {
+    margin-bottom: 1rem;
+    transition: var(--transition);
+    border: none;
+    box-shadow: var(--shadow-sm);
+}
+
+.vuln-card:hover {
+    box-shadow: var(--shadow);
+}
+
+.vuln-card .card-header {
+    padding: 1rem 1.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: none;
+}
+
+.vuln-card .card-body {
+    padding: 1.5rem;
+}
+
+.vuln-critique .card-header {
+    background-color: rgba(239, 68, 68, 0.1);
+}
+
+.vuln-important .card-header {
+    background-color: rgba(245, 158, 11, 0.1);
+}
+
+.vuln-modéré .card-header {
+    background-color: rgba(59, 130, 246, 0.1);
+}
+
+.vuln-faible .card-header {
+    background-color: rgba(16, 185, 129, 0.1);
+}
+
+/* Recommendation cards */
+.rec-card {
+    margin-bottom: 1rem;
+    transition: var(--transition);
+    border: none;
+    box-shadow: var(--shadow-sm);
+}
+
+.rec-card:hover {
+    box-shadow: var(--shadow);
+}
+
+.rec-card .card-header {
+    padding: 1rem 1.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: rgba(59, 130, 246, 0.05);
+    border-bottom: none;
+}
+
+.rec-card .card-body {
+    padding: 1.5rem;
+}
+
+/* Badges */
+.badge {
+    font-weight: 500;
+    padding: 0.35em 0.65em;
+}
+
+/* Empty state */
+.empty-state {
+    padding: 4rem 2rem;
+    text-align: center;
+    border-radius: var(--border-radius);
+    background-color: var(--light-color);
+}
+
+.empty-state i {
+    font-size: 3rem;
+    color: var(--secondary-color);
+    opacity: 0.6;
+    margin-bottom: 1.5rem;
+}
+
+.empty-state h4 {
+    font-weight: 600;
+    margin-bottom: 1rem;
+}
+
+.empty-state p {
+    color: var(--secondary-color);
+    margin-bottom: 1.5rem;
+}
+
+/* Anomaly status */
+.anomaly-status .badge {
+    font-size: 0.85rem;
+    padding: 0.35em 1em;
+}
+
+/* Print styles for reports */
+@media print {
+
+    header,
+    footer,
+    .chatbot-wrapper,
+    .navbar {
+        display: none !important;
+    }
+
+    .container {
+        width: 100% !important;
+        max-width: 100% !important;
+    }
+
+    .reports-section {
+        padding-top: 0 !important;
+    }
+
+    .card {
+        box-shadow: none !important;
+        border: 1px solid #ddd !important;
+    }
+
+    .btn {
+        display: none !important;
+    }
+}

@@ -1,0 +1,19 @@
+<!-- assets/img/logo-light.svg -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 60">
+  <style>
+    .logo-text { font-family: 'Arial', sans-serif; font-weight: bold; }
+    .blue-shield { fill: #60a5fa; }
+    .light-blue { fill: #93c5fd; }
+    .logo-web { fill: #ffffff; }
+    .logo-secure { fill: #e5e7eb; }
+  </style>
+  <!-- Même contenu que logo.svg mais avec les couleurs adaptées au fond sombre -->
+  <g>
+    <path class="blue-shield" d="M30,5 L50,15 V35 C50,45 40,50 30,55 C20,50 10,45 10,35 V15 L30,5z"/>
+    <path class="light-blue" d="M30,10 L45,18 V35 C45,42 35,46 30,50 C25,46 15,42 15,35 V18 L30,10z"/>
+    <path fill="#fff" d="M25,25 L35,25 L35,35 L25,35 Z M27,27 L27,33 L33,33 L33,27 Z"/>
+    <path fill="#fff" d="M30,20 C32.5,20 35,22.5 35,25 L25,25 C25,22.5 27.5,20 30,20 Z"/>
+  </g>
+  <text x="65" y="35" class="logo-text logo-web" font-size="22">Web</text>
+  <text x="120" y="35" class="logo-text logo-secure" font-size="22">Secure</text>
+</svg>
