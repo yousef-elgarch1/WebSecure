@@ -1,0 +1,125 @@
+<svg viewBox="0 0 800 500" xmlns="http://www.w3.org/2000/svg">
+  <!-- Arrière-plan -->
+  <rect width="800" height="500" fill="#f8f9fa" rx="10" ry="10" />
+  
+  <!-- Titre -->
+  <text x="400" y="40" text-anchor="middle" font-family="Arial, sans-serif" font-size="20" font-weight="bold" fill="#212529">Pipeline de Machine Learning - WebSecure</text>
+  
+  <!-- Étape 1: Feature Engineering -->
+  <g transform="translate(50, 100)">
+    <rect width="700" height="80" rx="8" ry="8" fill="#e9ecef" stroke="#ced4da" stroke-width="2" />
+    <text x="350" y="30" text-anchor="middle" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="#3f6ad8">1. Feature Engineering</text>
+    
+    <!-- Sous-étapes -->
+    <g transform="translate(20, 50)">
+      <rect width="200" height="20" rx="4" ry="4" fill="#3f6ad8" opacity="0.8" />
+      <text x="100" y="15" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="white">HTML/CSS/JS Features (45+)</text>
+    </g>
+    
+    <g transform="translate(240, 50)">
+      <rect width="200" height="20" rx="4" ry="4" fill="#3f6ad8" opacity="0.8" />
+      <text x="100" y="15" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="white">HTTP Headers Features (30+)</text>
+    </g>
+    
+    <g transform="translate(460, 50)">
+      <rect width="200" height="20" rx="4" ry="4" fill="#3f6ad8" opacity="0.8" />
+      <text x="100" y="15" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="white">Config Features (25+)</text>
+    </g>
+  </g>
+  
+  <!-- Flèche vers l'étape 2 -->
+  <g transform="translate(400, 190)">
+    <path d="M0,0 L0,20" stroke="#6c757d" stroke-width="2" />
+    <polygon points="0,30 -6,20 6,20" fill="#6c757d" />
+  </g>
+  
+  <!-- Étape 2: Entraînement des modèles -->
+  <g transform="translate(50, 220)">
+    <rect width="700" height="120" rx="8" ry="8" fill="#e9ecef" stroke="#ced4da" stroke-width="2" />
+    <text x="350" y="30" text-anchor="middle" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="#3ac47d">2. Entraînement des modèles</text>
+    
+    <!-- Sous-étapes -->
+    <g transform="translate(20, 50)">
+      <rect width="200" height="60" rx="4" ry="4" fill="#3ac47d" opacity="0.8" />
+      <text x="100" y="20" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="white">Phase 1:</text>
+      <text x="100" y="40" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="white">Détection d'anomalies</text>
+      <text x="100" y="55" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="white">(Isolation Forest)</text>
+    </g>
+    
+    <g transform="translate(240, 50)">
+      <rect width="200" height="60" rx="4" ry="4" fill="#3ac47d" opacity="0.8" />
+      <text x="100" y="20" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="white">Phase 2:</text>
+      <text x="100" y="40" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="white">Classification des vulnérabilités</text>
+      <text x="100" y="55" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="white">(XGBoost)</text>
+    </g>
+    
+    <g transform="translate(460, 50)">
+      <rect width="200" height="60" rx="4" ry="4" fill="#3ac47d" opacity="0.8" />
+      <text x="100" y="20" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="white">Phase 3:</text>
+      <text x="100" y="40" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="white">Prédiction de gravité</text>
+      <text x="100" y="55" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="white">(Random Forest)</text>
+    </g>
+  </g>
+  
+  <!-- Flèche vers l'étape 3 -->
+  <g transform="translate(400, 350)">
+    <path d="M0,0 L0,20" stroke="#6c757d" stroke-width="2" />
+    <polygon points="0,30 -6,20 6,20" fill="#6c757d" />
+  </g>
+  
+  <!-- Étape 3: Évaluation et Déploiement -->
+  <g transform="translate(50, 380)">
+    <rect width="340" height="80" rx="8" ry="8" fill="#e9ecef" stroke="#ced4da" stroke-width="2" />
+    <text x="170" y="30" text-anchor="middle" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="#f7b924">3. Évaluation</text>
+    
+    <!-- Métriques -->
+    <g transform="translate(20, 50)">
+      <rect width="100" height="20" rx="4" ry="4" fill="#f7b924" opacity="0.8" />
+      <text x="50" y="15" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="white">F1: 0.92</text>
+    </g>
+    
+    <g transform="translate(130, 50)">
+      <rect width="100" height="20" rx="4" ry="4" fill="#f7b924" opacity="0.8" />
+      <text x="50" y="15" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="white">Accuracy: 0.87</text>
+    </g>
+    
+    <g transform="translate(240, 50)">
+      <rect width="80" height="20" rx="4" ry="4" fill="#f7b924" opacity="0.8" />
+      <text x="40" y="15" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="white">RMSE: 0.31</text>
+    </g>
+  </g>
+  
+  <g transform="translate(410, 380)">
+    <rect width="340" height="80" rx="8" ry="8" fill="#e9ecef" stroke="#ced4da" stroke-width="2" />
+    <text x="170" y="30" text-anchor="middle" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="#16aaff">4. Déploiement</text>
+    
+    <!-- Métriques -->
+    <g transform="translate(20, 50)">
+      <rect width="100" height="20" rx="4" ry="4" fill="#16aaff" opacity="0.8" />
+      <text x="50" y="15" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="white">Export ONNX</text>
+    </g>
+    
+    <g transform="translate(130, 50)">
+      <rect width="100" height="20" rx="4" ry="4" fill="#16aaff" opacity="0.8" />
+      <text x="50" y="15" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="white">API Flask</text>
+    </g>
+    
+    <g transform="translate(240, 50)">
+      <rect width="80" height="20" rx="4" ry="4" fill="#16aaff" opacity="0.8" />
+      <text x="40" y="15" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="white">Monitoring</text>
+    </g>
+  </g>
+  
+  <!-- Légende des flèches -->
+  <g transform="translate(50, 470)">
+    <rect width="80" height="20" rx="4" ry="4" fill="#e9ecef" stroke="#ced4da" stroke-width="1" />
+    <text x="40" y="15" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="#6c757d">Étape</text>
+    
+    <path d="M95,10 L110,10" stroke="#6c757d" stroke-width="2" />
+    <polygon points="115,10 109,6 109,14" fill="#6c757d" />
+    <text x="140" y="15" font-family="Arial, sans-serif" font-size="12" fill="#6c757d">Flux de données</text>
+  </g>
+  
+  <!-- Légende de titre -->
+  <text x="400" y="490" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="#6c757d">Pipeline d'apprentissage automatique pour l'analyse des vulnérabilités web</text>
+</svg>
