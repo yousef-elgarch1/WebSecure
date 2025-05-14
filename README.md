@@ -40,7 +40,7 @@ Notre projet s'inscrit dans une démarche rigoureuse d'analyse basée sur les do
 ### 🔄 Cycle des données
 
 <p align="center">
-  <img src="frontend/assets/img/data_cycle.png" alt="Cycle des données" width="600">
+  <img src="frontend/assets/img/tech/data_cycle.png" alt="Cycle des données" width="600">
 </p>
 
 1. **Collecte de données réelles**:
@@ -77,7 +77,7 @@ Notre projet s'inscrit dans une démarche rigoureuse d'analyse basée sur les do
 Notre pipeline ML a été conçu pour assurer précision, robustesse et maintenabilité:
 
 <p align="center">
-  <img src="frontend/assets/img/ml_pipeline.png" alt="Pipeline ML" width="700">
+  <img src="frontend/assets/img/tech/ml_pipeline.png" alt="Pipeline ML" width="700">
 </p>
 
 ### 1. Feature Engineering
@@ -131,13 +131,13 @@ Notre pipeline ML a été conçu pour assurer précision, robustesse et maintena
 ### Courbes d'apprentissage
 
 <p align="center">
-  <img src="frontend/assets/img/learning_curve.png" alt="Courbes d'apprentissage" width="600">
+  <img src="frontend/assets/img/tech/learning_curve.png" alt="Courbes d'apprentissage" width="600">
 </p>
 
 ### Importance des caractéristiques (Top 10)
 
 <p align="center">
-  <img src="frontend/assets/img/feature_importance.png" alt="Importance des caractéristiques" width="600">
+  <img src="frontend/assets/img/tech/feature_importance.png" alt="Importance des caractéristiques" width="600">
 </p>
 
 ## ✨ Fonctionnalités
@@ -205,28 +205,14 @@ Présentation complète des vulnérabilités détectées avec recommandations.
   <br><em>Rapport détaillé montrant les vulnérabilités et leur sévérité</em>
 </p>
 
-### Visualisation des technologies détectées
-Identification automatique des technologies et frameworks utilisés.
 
-<p align="center">
-  <img src="frontend/assets/img/tech_detection.png" alt="Détection de technologies" width="800">
-  <br><em>Visualisation des technologies et frameworks identifiés</em>
-</p>
-
-### Comparaison historique
-Évolution de la sécurité d'un site au fil du temps.
-
-<p align="center">
-  <img src="frontend/assets/img/historical.png" alt="Comparaison historique" width="800">
-  <br><em>Graphique d'évolution du score de sécurité au fil des analyses</em>
-</p>
 
 ## 🏗 Architecture technique
 
 WebSecure est construit avec une architecture moderne, évolutive et modulaire:
 
 <p align="center">
-  <img src="frontend/assets/img/architecture.png" alt="Architecture technique" width="700">
+  <img src="frontend/assets/img/tech/architecture.png" alt="Architecture technique" width="700">
 </p>
 
 ### Frontend
@@ -371,101 +357,65 @@ WebSecure peut également être exécuté en utilisant Google Colab pour le back
 
 ```
 WebSecure/
-├── backend/                          # Code du serveur Flask
-│   ├── app.py                        # Point d'entrée de l'application
-│   ├── config.py                     # Configuration
-│   ├── auth/                         # Authentification et autorisation
-│   ├── feature_extractor/            # Extraction de caractéristiques
-│   │   ├── html_features.py          # Extraction depuis le HTML
-│   │   ├── header_features.py        # Extraction depuis les en-têtes HTTP
-│   │   └── js_features.py            # Extraction depuis JavaScript
-│   ├── models/                       # Modèles ML entraînés
-│   │   ├── anomaly_detector.pkl      # Modèle de détection d'anomalies
-│   │   ├── vuln_classifier.pkl       # Classificateur de vulnérabilités
-│   │   └── severity_predictor.pkl    # Prédicteur de sévérité
-│   ├── reports/                      # Rapports générés
-│   ├── risk_predictor/               # Prédiction des risques
-│   │   ├── predictor.py              # Logique principale de prédiction
-│   │   ├── feature_importance.py     # Analyse d'importance des features
-│   │   └── calibration.py            # Calibration des probabilités
-│   ├── security_analyzer/            # Analyse de sécurité
-│   │   ├── scanner.py                # Scanner de sécurité
-│   │   ├── vuln_detector.py          # Détecteur de vulnérabilités
-│   │   └── exploitability.py         # Évaluation de l'exploitabilité
-│   ├── utils/                        # Utilitaires
-│   │   ├── validators.py             # Validation des entrées
-│   │   ├── sanitizers.py             # Nettoyage des données
-│   │   └── http_client.py            # Client HTTP pour requêtes
-│   └── website_info_extractor/       # Extraction d'infos de sites
-│       ├── extractor.py              # Extracteur principal
-│       ├── logo_detector.py          # Détection de logo
-│       └── tech_identifier.py        # Identification des technologies
+├── backend/               # Code du serveur Flask
+│   ├── app.py             # Point d'entrée de l'application
+│   ├── config.py          # Configuration
+│   ├── requirements.txt   # Dépendances Python
+│   ├── wsgi.py            # Configuration WSGI pour déploiement
+│   ├── analyzer/          # Modules d'analyse et traitement ML
+│   │   ├── __pycache__/   # Cache Python
+│   │   ├── anomaly_detector.py     # Détection d'anomalies
+│   │   ├── data_preprocessor.py    # Prétraitement des données
+│   │   ├── deep_learning_classifier.py  # Classification par deep learning
+│   │   ├── feature_extractor.py    # Extraction de caractéristiques
+│   │   ├── model_trainer.py        # Entraînement des modèles
+│   │   └── website_analyzer.py     # Analyse de sites web
+│   ├── routes/            # Définition des routes API
+│   │   ├── analysis_routes.py      # Routes pour les analyses
+│   │   └── report_routes.py        # Routes pour les rapports
+│   └── utils/             # Utilitaires
+│       ├── data_handlers.py        # Gestion des données
+│       └── report_generator.py     # Génération de rapports
 │
-├── frontend/                         # Interface utilisateur
-│   ├── assets/
-│   │   ├── css/                      # Feuilles de style
-│   │   │   ├── bootstrap.min.css     # Bootstrap framework
-│   │   │   ├── style.css             # Styles personnalisés
-│   │   │   └── dashboard.css         # Styles du tableau de bord
-│   │   ├── img/                      # Images et illustrations
-│   │   │   ├── logo.svg              # Logo WebSecure
-│   │   │   ├── data_cycle.png        # Diagramme du cycle de données
-│   │   │   ├── ml_pipeline.png       # Diagramme du pipeline ML
-│   │   │   └── screenshots/          # Captures d'écran de l'application
-│   │   └── js/                       # Scripts JavaScript
-│   │       ├── api.js                # Client API pour le backend
-│   │       ├── dashboard.js          # Logique du tableau de bord
-│   │       ├── report.js             # Génération de rapports
-│   │       └── charts.js             # Visualisations avec Chart.js
-│   ├── components/                   # Composants réutilisables
-│   │   ├── header.html               # En-tête de page
-│   │   ├── footer.html               # Pied de page
-│   │   ├── sidebar.html              # Barre latérale
-│   │   └── modals.html               # Fenêtres modales
-│   ├── index.html                    # Page d'accueil
-│   ├── dashboard.html                # Tableau de bord
-│   ├── reports.html                  # Rapports d'analyse
-│   ├── about.html                    # À propos
-│   └── contact.html                  # Page de contact
+├── frontend/              # Interface utilisateur
+│   ├── index.html         # Page d'accueil
+│   ├── README.md          # Documentation frontend
+│   ├── assets/            # Ressources statiques
+│   │   ├── css/           # Feuilles de style
+│   │   │   ├── chatbot.css        # Styles pour le chatbot
+│   │   │   ├── dashboard.css      # Styles pour le tableau de bord
+│   │   │   ├── reports.css        # Styles pour les rapports
+│   │   │   └── style.css          # Styles globaux
+│   │   ├── img/           # Images et illustrations
+│   │   └── js/            # Scripts JavaScript
+│   │       ├── api.js             # Client API pour le backend
+│   │       ├── chatbot.js         # Fonctionnalités du chatbot
+│   │       ├── dashboard.js       # Logique du tableau de bord
+│   │       ├── main.js            # Script principal
+│   │       ├── mock_data.js       # Données de test
+│   │       └── reports.js         # Logique des rapports
+│   └── components/        # Composants réutilisables
+│       ├── about.html            # Page À propos
+│       ├── chatbot.html          # Composant chatbot
+│       ├── contact.html          # Page de contact
+│       ├── dashboard.html        # Page tableau de bord
+│       ├── footer.html           # Pied de page
+│       ├── header.html           # En-tête de page
+│       ├── index.html            # Page d'accueil
+│       ├── reports.html          # Page des rapports
+│       └── sidebar.html          # Barre latérale
 │
-├── data/                             # Données pour l'entraînement des modèles
-│   ├── raw/                          # Données brutes (rapports DGSS)
-│   ├── processed/                    # Données traitées
-│   │   ├── vulnerabilities.csv       # Dataset principal
-│   │   ├── security_headers.csv      # Données d'en-têtes de sécurité
-│   │   └── exploits.csv              # Données d'exploits connus
-│   ├── features/                     # Caractéristiques extraites
-│   └── training_logs/                # Logs d'entraînement des modèles
+├── data/                  # Données pour l'entraînement des modèles
+│   └── rapports_dgss_securite_cleaned.csv  # Dataset nettoyé des rapports DGSS
 │
-├── notebooks/                        # Notebooks Jupyter pour l'analyse et l'entraînement
-│   ├── 01_data_scraping.ipynb        # Web scraping des rapports DGSS
-│   ├── 02_data_processing.ipynb      # Traitement des données
-│   ├── 03_exploratory_analysis.ipynb # Analyse exploratoire
-│   ├── 04_feature_engineering.ipynb  # Ingénierie des caractéristiques
-│   ├── 05_model_training.ipynb       # Entraînement des modèles
-│   ├── 06_model_evaluation.ipynb     # Évaluation des performances
-│   └── 07_production_deployment.ipynb # Préparation pour la production
+├── notebooks/             # Notebooks Jupyter pour l'analyse et l'entraînement
 │
-├── tests/                            # Tests unitaires et d'intégration
-│   ├── backend/                      # Tests backend
-│   ├── frontend/                     # Tests frontend
-│   └── ml/                           # Tests modèles ML
+├── WebSecure_folders/     # Dossier principal du projet
+│   ├── macert.pdf                  # Certificats ou documentations
+│   └── rapports_dgss_securite_cleaned.csv  # Copie du dataset nettoyé
 │
-├── docs/                             # Documentation
-│   ├── api/                          # Documentation API
-│   ├── ml/                           # Documentation ML
-│   └── user/                         # Guide utilisateur
-│
-├── docker/                           # Configuration Docker
-│   ├── backend.Dockerfile            # Dockerfile pour le backend
-│   ├── frontend.Dockerfile           # Dockerfile pour le frontend
-│   └── docker-compose.yml            # Configuration Docker Compose
-│
-├── .gitignore                        # Fichiers ignorés par Git
-├── requirements.txt                  # Dépendances Python
-├── package.json                      # Dépendances Node.js (optionnel)
-├── LICENSE                           # Licence MIT
-└── README.md                         # Ce fichier
+├── .gitignore             # Fichiers ignorés par Git
+└── README.md              # Documentation principale du projet
 ```
 
 ## 👥 Contributeurs
@@ -485,7 +435,7 @@ Ce projet a été développé par :
     </td>
     <td align="center">
       <a href="https://github.com/ibnoukadinisrine">
-        <img src="https://github.com/ibnoukadinisrine.png" width="100px;" alt="IBNOU KADY Nisrine"/>
+        <img src="frontend/assets/img/l6d2crn5.png" width="100px;" alt="IBNOU KADY Nisrine"/>
         <br />
         <sub><b>IBNOU KADY Nisrine</b></sub>
       </a>
