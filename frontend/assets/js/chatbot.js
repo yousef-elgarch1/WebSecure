@@ -1,98 +1,101 @@
-// Chatbot functionality for WebSecure
+// Simplified Chatbot functionality for WebSecure - FIXED BUBBLES VERSION
 
-class SecurityChatbot {
-  constructor() {
-    this.chatContainer = document.getElementById('chatbot-container');
-    this.messagesContainer = document.getElementById('chatbot-messages');
-    this.inputField = document.getElementById('chatbot-input');
-    this.sendButton = document.getElementById('chatbot-send');
-    this.toggleButton = document.getElementById('chatbot-toggle');
-    
-    this.isOpen = false;
-    this.isTyping = false;
-    
-    // Knowledge base for simple responses
-    this.knowledgeBase = {
-      'xss': {
-        description: 'Cross-Site Scripting (XSS) is a security vulnerability that allows attackers to inject client-side scripts into web pages viewed by other users.',
-        remediation: 'To prevent XSS, always validate and sanitize user input, implement Content Security Policy (CSP), and use proper output encoding.',
-        risk: 'High - XSS can lead to session theft, credential theft, and malicious actions performed on behalf of users.'
-      },
-      'sql injection': {
-        description: 'SQL Injection is a code injection technique that exploits vulnerabilities in the interface between web applications and databases.',
-        remediation: 'Use parameterized queries or prepared statements, implement input validation, and apply the principle of least privilege for database accounts.',
-        risk: 'Critical - SQL Injection can lead to unauthorized data access, data manipulation, and even complete server compromise.'
-      },
-      'csrf': {
-        description: 'Cross-Site Request Forgery (CSRF) tricks users into submitting unwanted requests to websites where they\'re authenticated.',
-        remediation: 'Implement anti-CSRF tokens, use SameSite cookie attribute, and verify the Origin/Referer header.',
-        risk: 'Medium - CSRF can lead to unauthorized actions performed on behalf of authenticated users.'
-      }
-    };
-    
-    this.initEventListeners();
+// Initialize on DOM load
+document.addEventListener('DOMContentLoaded', function() {
+  const chatbotToggle = document.getElementById('chatbot-toggle');
+  const chatbotContainer = document.getElementById('chatbot-container');
+  const chatbotClose = document.getElementById('chatbot-close');
+  const chatbotMessages = document.getElementById('chatbot-messages');
+  const chatbotInput = document.getElementById('chatbot-input');
+  const chatbotSend = document.getElementById('chatbot-send');
+  
+  // Check if all elements exist
+  if (!chatbotToggle || !chatbotContainer || !chatbotClose || 
+      !chatbotMessages || !chatbotInput || !chatbotSend) {
+    console.error('Chatbot: Some elements not found');
+    return;
   }
   
-  initEventListeners() {
-    // Toggle chatbot visibility
-    this.toggleButton.addEventListener('click', () => this.toggleChatbot());
-    
-    // Send message on button click
-    this.sendButton.addEventListener('click', () => this.handleUserInput());
-    
-    // Send message on Enter key
-    this.inputField.addEventListener('keypress', (e) => {
-      if (e.key === 'Enter') {
-        this.handleUserInput();
-      }
-    });
-  }
+  // Variables
+  let isOpen = false;
+  let isTyping = false;
   
-  toggleChatbot() {
-    this.isOpen = !this.isOpen;
-    this.chatContainer.classList.toggle('open', this.isOpen);
+  // Toggle chatbot visibility
+  chatbotToggle.addEventListener('click', () => {
+    isOpen = !isOpen;
+    chatbotContainer.classList.toggle('open', isOpen);
     
-    if (this.isOpen && this.messagesContainer.children.length === 0) {
-      // Add welcome message when first opened
-      this.addBotMessage('Bonjour! Je suis l\'assistant de sécurité web WebSecure. Comment puis-je vous aider aujourd\'hui?');
+    // Add welcome message when first opened
+    if (isOpen && chatbotMessages.children.length === 0) {
+      addBotMessage('Bonjour! 👋 Je suis l\'assistant WebSecure. Comment puis-je vous aider aujourd\'hui?');
+      
+      // Show suggestions
+      setTimeout(() => {
+        showSuggestions([
+          "Qu'est-ce que XSS?",
+          "Comment prévenir les injections SQL?",
+          "En-têtes de sécurité"
+        ]);
+      }, 500);
     }
+  });
+  
+  // Close chatbot
+  chatbotClose.addEventListener('click', () => {
+    isOpen = false;
+    chatbotContainer.classList.remove('open');
+  });
+  
+  // Send message
+  chatbotSend.addEventListener('click', handleUserInput);
+  
+  // Send message on Enter
+  chatbotInput.addEventListener('keypress', (e) => {
+    if (e.key === 'Enter') {
+      handleUserInput();
+    }
+  });
+  
+  // Process user input
+  function handleUserInput() {
+    const userInput = chatbotInput.value.trim();
+    
+    if (userInput.length === 0 || isTyping) return;
+    
+    // Add user message
+    addUserMessage(userInput);
+    
+    // Clear input
+    chatbotInput.value = '';
+    
+    // Process and respond
+    processUserMessage(userInput);
   }
   
-  handleUserInput() {
-    const userInput = this.inputField.value.trim();
-    
-    if (userInput.length === 0 || this.isTyping) return;
-    
-    // Add user message to chat
-    this.addUserMessage(userInput);
-    
-// Clear input field
-    this.inputField.value = '';
-    
-    // Process the message and respond
-    this.processUserMessage(userInput);
-  }
-  
-  addUserMessage(message) {
+  // Add user message bubble
+  function addUserMessage(message) {
     const messageElement = document.createElement('div');
     messageElement.className = 'chatbot-message user-message';
     messageElement.innerHTML = `
       <div class="message-content">
-        <p>${this.escapeHtml(message)}</p>
+        <p>${escapeHtml(message)}</p>
+        <div class="message-time">${getCurrentTime()}</div>
       </div>
     `;
-    this.messagesContainer.appendChild(messageElement);
-    this.scrollToBottom();
+    chatbotMessages.appendChild(messageElement);
+    scrollToBottom();
   }
   
-  addBotMessage(message) {
+  // Add bot message bubble
+  function addBotMessage(message, withSuggestions = false) {
     // Set typing indicator
-    this.isTyping = true;
+    isTyping = true;
+    
     const typingIndicator = document.createElement('div');
     typingIndicator.className = 'chatbot-message bot-message typing';
     typingIndicator.innerHTML = `
       <div class="avatar">
-        <img src="/assets/img/logo-icon.svg" alt="WebSecure Bot">
+        <img src="assets/img/logo-icon.svg" alt="WebSecure">
       </div>
       <div class="message-content">
         <div class="typing-indicator">
@@ -102,101 +105,84 @@ class SecurityChatbot {
         </div>
       </div>
     `;
-    this.messagesContainer.appendChild(typingIndicator);
-    this.scrollToBottom();
     
-    // Simulate thinking/typing delay
+    chatbotMessages.appendChild(typingIndicator);
+    scrollToBottom();
+    
+    // After delay, remove typing and add actual message
     setTimeout(() => {
-      // Remove typing indicator
-      this.messagesContainer.removeChild(typingIndicator);
+      chatbotMessages.removeChild(typingIndicator);
       
-      // Add actual message
       const messageElement = document.createElement('div');
       messageElement.className = 'chatbot-message bot-message';
       messageElement.innerHTML = `
         <div class="avatar">
-          <img src="/assets/img/logo-icon.svg" alt="WebSecure Bot">
+          <img src="assets/img/logo-icon.svg" alt="WebSecure">
         </div>
         <div class="message-content">
           <p>${message}</p>
+          <div class="message-time">${getCurrentTime()}</div>
         </div>
       `;
-      this.messagesContainer.appendChild(messageElement);
-      this.scrollToBottom();
-      this.isTyping = false;
-    }, 1000 + Math.random() * 1000); // Random delay between 1-2 seconds
+      
+      chatbotMessages.appendChild(messageElement);
+      
+      // Add suggestions if needed
+      if (withSuggestions) {
+        showSuggestions();
+      }
+      
+      scrollToBottom();
+      isTyping = false;
+    }, 1000);
   }
   
-  processUserMessage(message) {
-    // Convert to lowercase for easier matching
+  // Process user message
+  function processUserMessage(message) {
     const lowerMessage = message.toLowerCase();
     
-    // Check if it's a greeting
-    if (this.isGreeting(lowerMessage)) {
-      this.addBotMessage("Bonjour! Je suis là pour répondre à vos questions sur la sécurité web. Que voulez-vous savoir?");
-      return;
+    // Simple response logic
+    if (lowerMessage.includes('bonjour') || lowerMessage.includes('salut') || lowerMessage.includes('hello')) {
+      addBotMessage('Bonjour! Je suis là pour répondre à vos questions sur la sécurité web. Comment puis-je vous aider?', true);
     }
-    
-    // Check if asking for help
-    if (this.isAskingForHelp(lowerMessage)) {
-      this.showHelpMenu();
-      return;
+    else if (lowerMessage.includes('xss')) {
+      addBotMessage('Le XSS (Cross-Site Scripting) est une vulnérabilité qui permet à un attaquant d\'injecter du code malveillant dans une page web. Pour vous protéger, validez toutes les entrées utilisateur et encodez correctement les sorties.', true);
     }
-    
-    // Check if asking about a known vulnerability
-    for (const [key, info] of Object.entries(this.knowledgeBase)) {
-      if (lowerMessage.includes(key)) {
-        this.addBotMessage(`<strong>${key.toUpperCase()}:</strong> ${info.description}<br><br>
-          <strong>Risque:</strong> ${info.risk}<br><br>
-          <strong>Remédiation:</strong> ${info.remediation}`);
-        return;
-      }
+    else if (lowerMessage.includes('sql')) {
+      addBotMessage('L\'injection SQL est une technique d\'attaque qui exploite une vulnérabilité dans la gestion des requêtes SQL. Pour vous protéger, utilisez des requêtes paramétrées et validez toutes les entrées utilisateur.', true);
     }
-    
-    // Check if asking about a report
-    if (lowerMessage.includes('rapport') || lowerMessage.includes('report')) {
-      this.addBotMessage("Vous pouvez générer un rapport complet après l'analyse d'un site web. Les rapports incluent les vulnérabilités détectées, les recommandations de correction, et un score de risque global. Vous pouvez les exporter en HTML ou JSON.");
-      return;
+    else {
+      addBotMessage('Je ne suis pas sûr de comprendre votre question. Pouvez-vous reformuler ou choisir parmi les suggestions ci-dessous?', true);
     }
-    
-    // Check if asking about features
-    if (lowerMessage.includes('fonctionnalité') || lowerMessage.includes('feature') || lowerMessage.includes('capable')) {
-      this.addBotMessage("WebSecure offre plusieurs fonctionnalités:<br>- Analyse des vulnérabilités web<br>- Détection d'anomalies<br>- Génération de rapports détaillés<br>- Recommandations de sécurité<br>- Visualisation des risques<br>- Historique des analyses");
-      return;
-    }
-    
-    // Default response for unknown queries
-    this.addBotMessage("Je ne suis pas sûr de comprendre votre question. Pourriez-vous reformuler ou choisir parmi ces sujets:<br>- XSS<br>- SQL Injection<br>- CSRF<br>- Rapports<br>- Fonctionnalités");
   }
   
-  isGreeting(message) {
-    const greetings = ['bonjour', 'salut', 'hello', 'hi', 'hey', 'coucou'];
-    return greetings.some(greeting => message.includes(greeting));
+  // Show clickable suggestions
+  function showSuggestions(suggestions = ['Vulnérabilités XSS', 'Injection SQL', 'En-têtes de sécurité']) {
+    const suggestionsContainer = document.createElement('div');
+    suggestionsContainer.className = 'chatbot-suggestions';
+    
+    suggestions.forEach(suggestion => {
+      const button = document.createElement('button');
+      button.className = 'chatbot-suggestion';
+      button.textContent = suggestion;
+      button.addEventListener('click', () => {
+        chatbotInput.value = suggestion;
+        handleUserInput();
+      });
+      suggestionsContainer.appendChild(button);
+    });
+    
+    chatbotMessages.appendChild(suggestionsContainer);
+    scrollToBottom();
   }
   
-  isAskingForHelp(message) {
-    const helpPhrases = ['aide', 'help', 'comment', 'how', 'que fais-tu', 'what do you do'];
-    return helpPhrases.some(phrase => message.includes(phrase));
+  // Helper: Scroll chat to bottom
+  function scrollToBottom() {
+    chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
   }
   
-  showHelpMenu() {
-    this.addBotMessage(`
-      Je peux vous aider avec les sujets suivants:
-      <ul>
-        <li><strong>Informations sur les vulnérabilités</strong>: Demandez-moi des détails sur XSS, SQL Injection, CSRF, etc.</li>
-        <li><strong>Conseils de sécurité</strong>: Comment sécuriser votre site</li>
-        <li><strong>Fonctionnalités de WebSecure</strong>: Ce que notre plateforme peut faire</li>
-        <li><strong>Utilisation des rapports</strong>: Comment interpréter les résultats</li>
-      </ul>
-      Que voulez-vous savoir?
-    `);
-  }
-  
-  scrollToBottom() {
-    this.messagesContainer.scrollTop = this.messagesContainer.scrollHeight;
-  }
-  
-  escapeHtml(unsafe) {
+  // Helper: Escape HTML to prevent XSS
+  function escapeHtml(unsafe) {
     return unsafe
       .replace(/&/g, "&amp;")
       .replace(/</g, "&lt;")
@@ -204,9 +190,13 @@ class SecurityChatbot {
       .replace(/"/g, "&quot;")
       .replace(/'/g, "&#039;");
   }
-}
-
-// Initialize chatbot when page is loaded
-document.addEventListener('DOMContentLoaded', () => {
-  const chatbot = new SecurityChatbot();
+  
+  // Helper: Get current time
+  function getCurrentTime() {
+    const now = new Date();
+    return now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+  }
+  
+  // Debug info
+  console.log('Chatbot initialized successfully');
 });

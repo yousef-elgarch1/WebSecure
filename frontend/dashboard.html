@@ -15,9 +15,13 @@
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
     <!-- Custom CSS -->
     <link rel="stylesheet" href="assets/css/style.css">
     <link rel="stylesheet" href="assets/css/dashboard.css">
+<link rel="stylesheet" href="assets/css/chatbot.css">
 </head>
 
 <body>
@@ -102,22 +106,40 @@
                 </div>
             </div>
 
+            <!-- Attack statistics chart -->
+            <div class="row mb-4">
+                <div class="col-12">
+                    <div class="card dashboard-card">
+                        <div class="card-body">
+                            <h3 class="card-title">Statistiques des attaques</h3>
+                            <div style="height: 300px;"> <!-- Fixed height container -->
+                                <canvas id="attacks-chart"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
             <!-- Dashboard charts -->
             <div class="row mb-4">
                 <div class="col-lg-8 mb-4">
                     <div class="card dashboard-card">
                         <div class="card-body">
                             <h3 class="card-title">Distribution des vulnérabilités</h3>
-                            <canvas id="vulnerability-chart" height="250"></canvas>
+                            <div style="height: 350px;"> <!-- Fixed height container -->
+                                <canvas id="vulnerability-chart"></canvas>
+                            </div>
                         </div>
                     </div>
                 </div>
-
+            
                 <div class="col-lg-4 mb-4">
                     <div class="card dashboard-card">
                         <div class="card-body">
                             <h3 class="card-title">Niveaux de risque</h3>
-                            <canvas id="risk-distribution-chart" height="250"></canvas>
+                            <div style="height: 350px;"> <!-- Fixed height container -->
+                                <canvas id="risk-distribution-chart"></canvas>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -148,27 +170,44 @@
         </div>
     </section>
 
-    <!-- Chatbot -->
-    <div class="chatbot-wrapper">
-        <div id="chatbot-container" class="chatbot-container">
-            <div class="chatbot-header">
-                <h5><i class="fas fa-robot me-2"></i> Assistant WebSecure</h5>
-                <button class="chatbot-close" id="chatbot-close">
-                    <i class="fas fa-times"></i>
-                </button>
+<!-- Chatbot Container -->
+<div class="chatbot-wrapper">
+    <!-- Main Chatbot UI -->
+    <div id="chatbot-container" class="chatbot-container">
+        <!-- Chatbot Header -->
+        <div class="chatbot-header">
+            <div class="chatbot-header-title">
+                <img src="assets/img/logo-icon.svg" sizes="30" alt="WebSecure">
+                <div>
+                    <h3>My WebSecure</h3>
+                    <p>Expert en Websécurité</p>
+                </div>
             </div>
-            <div id="chatbot-messages" class="chatbot-messages"></div>
-            <div class="chatbot-input-container">
-                <input type="text" id="chatbot-input" class="chatbot-input" placeholder="Posez votre question...">
-                <button id="chatbot-send" class="chatbot-send-btn">
-                    <i class="fas fa-paper-plane"></i>
-                </button>
-            </div>
+            <button id="chatbot-close" class="chatbot-close">
+                <i class="fas fa-times"></i>
+            </button>
         </div>
-        <button id="chatbot-toggle" class="chatbot-toggle-btn">
-            <i class="fas fa-comment"></i>
-        </button>
+
+        <!-- Chat Messages Area -->
+        <div id="chatbot-messages" class="chatbot-messages">
+            <!-- Messages will be added here dynamically -->
+        </div>
+
+        <!-- Input Area -->
+        <div class="chatbot-input-container">
+            <input type="text" id="chatbot-input" class="chatbot-input"
+                placeholder="Posez votre question sur la sécurité web...">
+            <button id="chatbot-send" class="chatbot-send-btn">
+                <i class="fas fa-paper-plane"></i>
+            </button>
+        </div>
     </div>
+
+    <!-- Toggle Button -->
+    <button id="chatbot-toggle" class="chatbot-toggle-btn">
+        <i class="fas fa-comment"></i>
+    </button>
+</div>
 
     <!-- Footer -->
     <footer class="footer py-5">
@@ -230,3 +269,8 @@
 
     <!-- Custom JavaScript -->
     <script src="assets/js/api.js"></script>
+    <script src="assets/js/dashboard.js"></script>
+    <script src="assets/js/chatbot.js"></script>
+</body>
+
+</html>

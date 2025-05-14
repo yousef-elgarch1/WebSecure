@@ -300,23 +300,40 @@
     </div>
 </section>
 
-<!-- Chatbot -->
+<!-- Chatbot Container -->
 <div class="chatbot-wrapper">
+    <!-- Main Chatbot UI -->
     <div id="chatbot-container" class="chatbot-container">
+        <!-- Chatbot Header -->
         <div class="chatbot-header">
-            <h5><i class="fas fa-robot me-2"></i> Assistant WebSecure</h5>
-            <button class="chatbot-close" id="chatbot-close">
+            <div class="chatbot-header-title">
+                <img src="assets/img/logo-icon.svg" sizes="30" alt="WebSecure">
+                <div>
+                    <h3>My WebSecure</h3>
+                    <p>Expert en Websécurité</p>
+                </div>
+            </div>
+            <button id="chatbot-close" class="chatbot-close">
                 <i class="fas fa-times"></i>
             </button>
         </div>
-        <div id="chatbot-messages" class="chatbot-messages"></div>
+
+        <!-- Chat Messages Area -->
+        <div id="chatbot-messages" class="chatbot-messages">
+            <!-- Messages will be added here dynamically -->
+        </div>
+
+        <!-- Input Area -->
         <div class="chatbot-input-container">
-            <input type="text" id="chatbot-input" class="chatbot-input" placeholder="Posez votre question...">
+            <input type="text" id="chatbot-input" class="chatbot-input"
+                placeholder="Posez votre question sur la sécurité web...">
             <button id="chatbot-send" class="chatbot-send-btn">
                 <i class="fas fa-paper-plane"></i>
             </button>
         </div>
     </div>
+
+    <!-- Toggle Button -->
     <button id="chatbot-toggle" class="chatbot-toggle-btn">
         <i class="fas fa-comment"></i>
     </button>

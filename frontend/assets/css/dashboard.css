@@ -197,3 +197,48 @@
         margin-top: 0.5rem;
     }
 }
+
+/* Add these to your existing dashboard.css file */
+
+/* Chart container styles */
+.dashboard-card canvas {
+    max-height: 100%;
+    width: 100% !important;
+    height: 100% !important;
+}
+
+.chart-container {
+    position: relative;
+    margin: auto;
+    height: 300px;
+    width: 100%;
+}
+
+/* Make sure charts don't overflow */
+.dashboard-card .card-body {
+    overflow: hidden;
+}
+
+/* Control chart aspect ratios */
+#vulnerability-chart-container {
+    height: 350px;
+}
+
+#risk-distribution-chart-container {
+    height: 350px;
+}
+
+#attacks-chart-container {
+    height: 300px;
+}
+
+/* Ensure chart legends are properly sized */
+.dashboard-card .chartjs-legend {
+    font-size: 0.8rem;
+    margin-top: 0.5rem;
+}
+
+/* Prevent chart bars from being too tall */
+.dashboard-card .chartjs-render-monitor {
+    max-height: 100%;
+}

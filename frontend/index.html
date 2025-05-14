@@ -5,8 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>WebSecure - Analyse Avancée de Vulnérabilités Web</title>
     
+    <script src="https://cdn.jsdelivr.net/npm/dompurify@2.4.0/dist/purify.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/canvg@3.0.0/lib/umd/canvg.min.js"></script>
+
     <!-- Favicon -->
-    <link rel="shortcut icon" href="assets/img/favicon.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="assets/img/logo-icon.svg" type="image/x-icon">
     
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -16,6 +21,8 @@
     
     <!-- Custom CSS -->
     <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/chatbot.css">
+    <link rel="stylesheet" href="assets/css/dashboard.css">
     
     <!-- SweetAlert2 -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
@@ -25,8 +32,8 @@
     <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
         <div class="container">
             <a class="navbar-brand" href="index.html">
-                <img src="assets/img/logo.svg" alt="WebSecure Logo" height="40">
-                <span>WebSecure</span>
+                <img src="assets/img/logo.svg" alt="WebSecure Logo" height="80">
+
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                 <span class="navbar-toggler-icon"></span>
@@ -49,7 +56,7 @@
                         <a class="nav-link" href="contact.html">Contact</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link btn btn-primary btn-sm px-3 ms-2" href="#analyze">Analyser</a>
+                        <a class="nav-link btn btn-primary btn-sm px-4 ms-2" href="#analyze">Analyser</a>
                     </li>
                 </ul>
             </div>
@@ -66,7 +73,7 @@
             <div class="row align-items-center">
                 <div class="col-lg-6">
                     <h1 class="display-4 fw-bold text-white animate-on-scroll">Sécurisez votre présence en ligne</h1>
-                    <p class="lead text-white mb-4 animate-on-scroll">WebSecure combine l'intelligence artificielle et l'apprentissage automatique pour détecter les vulnérabilités de sécurité dans votre site web.</p>
+                    <p class="lead text-white mb-4 animate-on-scroll">WebSecure combine l'intelligence artificielle pour securiser votre site web.</p>
                     <div class="d-flex flex-column flex-sm-row animate-on-scroll">
                         <a href="#analyze" class="btn btn-primary btn-lg me-sm-3 mb-3 mb-sm-0">
                             <i class="fas fa-shield-alt me-2"></i>Analyser maintenant
@@ -152,7 +159,7 @@
     </section>
     
     <!-- Team Section -->
-    <section class="team-section py-5 bg-light">
+    <section id="features" class="team-section py-5 bg-light">
         <div class="container">
             <div class="text-center mb-5">
                 <h2 class="section-title animate-on-scroll">Notre Équipe</h2>
@@ -163,7 +170,7 @@
                 <div class="col-lg-4 col-md-6 mb-4 animate-on-scroll">
                     <div class="team-card">
                         <div class="team-img">
-                            <img src="assets/img/team/youssef.jpg" alt="Youssef ELGARCH" class="img-fluid rounded-circle mb-3">
+                            <img src="assets/img/youssef ELGARCH.JPG" alt="Youssef ELGARCH" class="img-fluid rounded-circle mb-3">
                         </div>
                         <div class="team-info text-center">
                             <h4>Youssef ELGARCH</h4>
@@ -182,7 +189,7 @@
                 <div class="col-lg-4 col-md-6 mb-4 animate-on-scroll">
                     <div class="team-card">
                         <div class="team-img">
-                            <img src="assets/img/team/nisrine.jpg" alt="Nisrine IBNOU-KADY" class="img-fluid rounded-circle mb-3">
+                            <img src="assets/img/l6d2crn5.png" alt="Nisrine IBNOU-KADY" class="img-fluid rounded-circle mb-3">
                         </div>
                         <div class="team-info text-center">
                             <h4>Nisrine IBNOU-KADY</h4>
@@ -202,26 +209,45 @@
     </section>
 
     <!-- Chatbot -->
-    <div class="chatbot-wrapper">
-        <div id="chatbot-container" class="chatbot-container">
-            <div class="chatbot-header">
-                <h5><i class="fas fa-robot me-2"></i> Assistant WebSecure</h5>
-                <button class="chatbot-close" id="chatbot-close">
-                    <i class="fas fa-times"></i>
-                </button>
+
+<!-- Chatbot Container -->
+<div class="chatbot-wrapper">
+    <!-- Main Chatbot UI -->
+    <div id="chatbot-container" class="chatbot-container">
+        <!-- Chatbot Header -->
+        <div class="chatbot-header">
+            <div class="chatbot-header-title">
+                <img src="assets/img/logo-icon.svg" sizes="30" alt="WebSecure">
+                <div>
+                    <h3>My WebSecure</h3>
+                    <p>Expert en Websécurité</p>
+                </div>
             </div>
-            <div id="chatbot-messages" class="chatbot-messages"></div>
-            <div class="chatbot-input-container">
-                <input type="text" id="chatbot-input" class="chatbot-input" placeholder="Posez votre question...">
-                <button id="chatbot-send" class="chatbot-send-btn">
-                    <i class="fas fa-paper-plane"></i>
-                </button>
-            </div>
+            <button id="chatbot-close" class="chatbot-close">
+                <i class="fas fa-times"></i>
+            </button>
         </div>
-        <button id="chatbot-toggle" class="chatbot-toggle-btn">
-            <i class="fas fa-comment"></i>
-        </button>
+
+        <!-- Chat Messages Area -->
+        <div id="chatbot-messages" class="chatbot-messages">
+            <!-- Messages will be added here dynamically -->
+        </div>
+
+        <!-- Input Area -->
+        <div class="chatbot-input-container">
+            <input type="text" id="chatbot-input" class="chatbot-input"
+                placeholder="Posez votre question sur la sécurité web...">
+            <button id="chatbot-send" class="chatbot-send-btn">
+                <i class="fas fa-paper-plane"></i>
+            </button>
+        </div>
     </div>
+
+    <!-- Toggle Button -->
+    <button id="chatbot-toggle" class="chatbot-toggle-btn">
+        <i class="fas fa-comment"></i>
+    </button>
+</div>
 
     <!-- Footer -->
     <footer class="footer py-5">
