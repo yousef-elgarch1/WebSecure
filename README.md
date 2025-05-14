@@ -1,7 +1,7 @@
 # WebSecure - Plateforme d'analyse de vulnérabilités web basée sur l'IA
 
 <p align="center">
-  <img src="frontend/assets/img/logo.svg" alt="WebSecure Logo" width="250">
+  <img src="frontend/assets/img/logo.svg" alt="WebSecure Logo" width="550">
 </p>
 
 <p align="center">
@@ -40,7 +40,7 @@ Notre projet s'inscrit dans une démarche rigoureuse d'analyse basée sur les do
 ### 🔄 Cycle des données
 
 <p align="center">
-  <img src="frontend/assets/img/tech/data_cycle.png" alt="Cycle des données" width="600">
+  <img src="frontend/assets/img/tech/data_cycle.svg" alt="Cycle des données" width="600">
 </p>
 
 1. **Collecte de données réelles**:
@@ -77,7 +77,7 @@ Notre projet s'inscrit dans une démarche rigoureuse d'analyse basée sur les do
 Notre pipeline ML a été conçu pour assurer précision, robustesse et maintenabilité:
 
 <p align="center">
-  <img src="frontend/assets/img/tech/ml_pipeline.png" alt="Pipeline ML" width="700">
+  <img src="frontend/assets/img/tech/ml_pipeline.svg" alt="Pipeline ML" width="700">
 </p>
 
 ### 1. Feature Engineering
@@ -131,13 +131,13 @@ Notre pipeline ML a été conçu pour assurer précision, robustesse et maintena
 ### Courbes d'apprentissage
 
 <p align="center">
-  <img src="frontend/assets/img/tech/learning_curve.png" alt="Courbes d'apprentissage" width="600">
+  <img src="frontend/assets/img/tech/learning_curve.svg" alt="Courbes d'apprentissage" width="600">
 </p>
 
 ### Importance des caractéristiques (Top 10)
 
 <p align="center">
-  <img src="frontend/assets/img/tech/feature_importance.png" alt="Importance des caractéristiques" width="600">
+  <img src="frontend/assets/img/tech/feature_importance.svg" alt="Importance des caractéristiques" width="600">
 </p>
 
 ## ✨ Fonctionnalités
@@ -212,7 +212,7 @@ Présentation complète des vulnérabilités détectées avec recommandations.
 WebSecure est construit avec une architecture moderne, évolutive et modulaire:
 
 <p align="center">
-  <img src="frontend/assets/img/tech/architecture.png" alt="Architecture technique" width="700">
+  <img src="frontend/assets/img/tech/architecture.svg" alt="Architecture technique" width="700">
 </p>
 
 ### Frontend
